@@ -1,12 +1,14 @@
 from flask import Flask, render_template
 import requests
+import os
+import secrets
 
-
+API_TOKEN = os.environ.get("APP_API_TOKEN")
+print(API_TOKEN)
 def get_popular_movies():
     url = "https://api.themoviedb.org/3/movie/popular"
-    api_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMzA1MjhlNDFkZWUxN2ZmODkyMTRlOThiOTg5YWY5YiIsInN1YiI6IjYwM2FiOGIyNDM0OTRmMDA2OGFlZDFhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hOWmg9QcGYgdQF-Qt0YsyNZW_GCj-QxbH-7jZ0dsEys"
     headers = {
-        "Authorization": f"Bearer {api_token}"
+        "Authorization": f"Bearer {API_TOKEN}"
     }
     response = requests.get(url, headers=headers)
     return response.json()
